@@ -1,0 +1,4 @@
+.filter__checks {
+  display: flex;
+  flex-direction: column;
+}
