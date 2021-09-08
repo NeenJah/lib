@@ -1,0 +1,2 @@
+# lib
+my stock library
