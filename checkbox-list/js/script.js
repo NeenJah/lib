@@ -1,16 +1,8 @@
 `use strict`;
 const display = new Display(true);
-$(`.filter-accordion`).accordion({
-  header: `.filter-accordion__header`,
-  collapsible: true,
+const headBtnEl = document.querySelector(`.js-filter-head-btn`);
+const checksFieldEl = document.querySelector(`.js-checks`);
+
+headBtnEl.addEventListener(`click`, function() {
+  checksFieldEl.classList.toggle(`filter__checks_show`);
 });
-
-function toggleFilterAccordion() {
-  if(document.documentElement.clientWidth > 400) {
-    $(`.filter-accordion`).accordion(`disable`);
-  }
-}
-
-toggleFilterAccordion();
-
-window.addEventListener(`resize`, toggleFilterAccordion);

@@ -5,48 +5,43 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>choices list</title>
 <link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/choices/choices.min.css">
-<link rel="stylesheet" href="css/jqui/jquery-ui.min.css">
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-<script src="js/jqui/jquery-ui.min.js"></script>
-<script src="js/choices/choices.min.js"></script>
 <script src="js/display.js"></script>
 <script src="js/script.js" defer></script>
 </head>
 <body>
   <header>
-    <h1>Choices list</h1>
+    <h1>Checkbox list</h1>
   </header>
   <main>
     <section class="filter">
     <h2>filter-form</h2>
-      <div class="filter__accordion filter-accordion">
-        <div  class="filter-accordion__header">
-        <h3 class="filter__title">Categories</h3>
-        <button class="filter__header-btn">^</button>
+      <div class="filter__container">
+        <div  class="filter__header">
+          <h3 class="filter__title">Categories</h3>
+          <button class="filter__header-btn js-filter-head-btn" type="button">^</button>
         </div>
-      <div class="filter-accordion__content">
-      <form class="filter__form js-filterForm">
-        <fieldset class="filter__checks">
+      <div class="filter__wrapper">
+      <form class="filter__form">
+        <fieldset class="filter__checks js-checks">
           <label class="filter__label">
             <input class="filter__checkbox" type="checkbox" name="item1">
-            item 1
+            <span class="filter__check-text">item 1</span>
           </label>
           <label class="filter__label">
             <input class="filter__checkbox" type="checkbox" name="item2">
-            item 2
+            <span class="filter__check-text">item 2</span>
           </label>
           <label class="filter__label">
             <input class="filter__checkbox" type="checkbox" name="item3">
-            item 3
+            <span class="filter__check-text">item 3</span>
           </label>
           <label class="filter__label">
             <input class="filter__checkbox" type="checkbox" name="item4">
-            item 4
+            <span class="filter__check-text">item 4</span>
           </label>
           <label class="filter__label">
             <input class="filter__checkbox" type="checkbox" name="item5">
-            item 5
+            <span class="filter__check-text">item 5</span>
           </label>
         </fieldset>
         <input type="submit">
