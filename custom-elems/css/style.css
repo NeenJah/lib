@@ -1,0 +1,9 @@
+ul {
+  position: relative;
+}
+
+.fake-option-hidden {
+  position: absolute;
+  opacity: 0;
+  visibility: hidden;
+}
