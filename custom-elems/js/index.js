@@ -130,11 +130,11 @@ class CustomMultipleSelect {
     index = Number(index);
     if(selected) {
       this.selectedOptListEl.append(this._coverOptions[index]);
-    } else if(index === 0) {
+    } else if(index === 0 || this.optListEl.children.length > 0) {
       this.optListEl.insertAdjacentElement(`afterbegin`, this._coverOptions[index]);
     } else {
       console.log(index - 1);
-      this.optListEl.querySelector(`[data-index="${index - 1}"]`).insertAdjacentElement(`afterend`, this._coverOptions[index]);
+      this.optListEl.children[index - 1].insertAdjacentElement(`afterend`, this._coverOptions[index]);
     }
   }
 }

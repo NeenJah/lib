@@ -38,6 +38,7 @@
 .cover-select__option {
   padding: 4px 6px;
   border-bottom: 1px solid #333;
+  cursor: pointer;
 }
 
 .cover-select__option:not(:last-child) {
