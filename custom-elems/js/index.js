@@ -2,6 +2,20 @@
 
 const selectEl = document.querySelector(`.js-select`);
 
+// ищем наименьший индекс в массиве относительно значения index
+function getLeastPrevIndex(index, array) {
+  // значение по умолчанию -1 (не найдено), потому что первый элемент имеет индекс 0
+  let leastIndex = -1;
+      
+  for(const el of array) {
+    if(Number(el.dataset.index) > index) break;
+    leastIndex++;
+  }
+  
+  return leastIndex;
+  
+}
+
 class CustomMultipleSelect {
   constructor(elem, options) {
     this._originSelect = elem;
@@ -17,7 +31,7 @@ class CustomMultipleSelect {
     this._coverSelect = this.createCoverSelect();
     
     // прячем оригинальный селект
-    // this._originSelect.hidden = `true`;
+    this._originSelect.hidden = `true`;
     
     // добавляем кастомный селект вместо оригинального
     this._originSelect.insertAdjacentElement(`afterend`, this._coverSelect);
@@ -34,12 +48,13 @@ class CustomMultipleSelect {
     this.wrapperEl.className = `cover-select`;
     this.fieldEl.className = `cover-select__input`;
     this.optListEl.className = `cover-select__optgroup`;
+    this.selectedOptListEl.className = `cover-select__optgroup_selected`;
     
     // обработчик кликов для выбора вариантов селекта
     const onChangeOriginSelectItemClick = (ev) => {
       if(!ev.target.classList.contains(`js-cover-option`)) return;
 
-      const index = ev.target.dataset.index;
+      const index = Number(ev.target.dataset.index);
       this.toggleOption(index);
       this.setOptgroupPosition();
     }
@@ -127,14 +142,17 @@ class CustomMultipleSelect {
   }
   
   setSelectedList(index, selected) {
-    index = Number(index);
+    // получаем наименьший индекс элемента перед текущим значением переменной index
+    const leastPrevIndex = getLeastPrevIndex(index, Array.from(this.optListEl.children));
+    
     if(selected) {
       this.selectedOptListEl.append(this._coverOptions[index]);
-    } else if(index === 0 || this.optListEl.children.length > 0) {
+      
+      // если selected === false, возвращаем элемент в список вариантов с сохранением изначальной последовательности
+    } else if(!index || !this.optListEl.children.length || leastPrevIndex === -1) {
       this.optListEl.insertAdjacentElement(`afterbegin`, this._coverOptions[index]);
     } else {
-      console.log(index - 1);
-      this.optListEl.children[index - 1].insertAdjacentElement(`afterend`, this._coverOptions[index]);
+      this.optListEl.children[leastPrevIndex].insertAdjacentElement(`afterend`, this._coverOptions[index]);
     }
   }
 }

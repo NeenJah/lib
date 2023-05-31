@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<style type="text/css">
+  header {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+  
+  .nav {
+    flex: 1 0 100%;
+  }
+
+  ul {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+  }
+  
+  li:not(:last-child) {
+    margin-right: auto;
+  }
+  
+  .bottom {
+    display: flex;
+  }
+  
+  .title{
+    flex: 0 1 20%;
+  }
+  
+  .block {
+    flex: 0 1 20%;
+    height: 100px;
+    background-color: violet;
+    border: 1px dashed yellow;
+  }
+  /*
+  @media(max-width: 500px) {
+    header {
+      max-height: 100vh;
+      overflow-x: hidden;
+    }
+    
+    ul {
+      flex-direction: column;
+    }
+    
+    li:not(:last-child) {
+      margin-right: 0;
+      margin-bottom: 10px;
+    }
+    
+    .info {
+      display: none;
+    }
+    
+    .nav,
+    .sotial,
+    .pdf {
+      position: absolute;
+      width: 100%;
+      transform: translateX(-100%);
+    }
+    
+    .nav {
+      order: 3;
+    }
+    
+    .sotial {
+      flex: 1 0 100%;
+      order: 4;
+    }
+    
+    .pdf {
+      flex: 1 0 100%;
+      order: 5;
+    }
+    
+    .title {
+      flex-grow: 1;
+      order: 1;
+    }
+    
+    .phone {
+      order: 2;
+    }
+  }*/
+</style>
+</head>
+<body>
+<header>
+<nav id="top" class="nav">
+  <ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+  </ul>
+</nav>
+<div class="block info"></div>
+<div class="block pdf"></div>
+<h1 class="title abs" data-adaptive="500 top">header</h1>
+<div class="block sotial" data-adaptive="500 top">sotial</div>
+<div class="block abs phone"></div>
+</header>
+<main>
+  <a href="#">TAP</a>
+</main>
+<script type="text/javascript">
+  class DynamicAdaptive {
+    constructor() {
+      this.adaptiveElems = document.querySelectorAll('[data-adaptive]');
+      this.bundleMap = new Map();
+      this.onSetAdaptive = this.onSetAdaptive.bind(this);
+      
+      for (let elem of this.adaptiveElems) {
+        this.bundleMap.set(elem, {parent: elem.parentNode, index: this.getIndexOfChild(elem)});
+      }
+      
+      window.addEventListener('resize', this.onSetAdaptive);
+    }
+    
+    onSetAdaptive() {
+      const windowWidth = document.documentElement.clientWidth;
+      
+      for(let elem of this.adaptiveElems) {
+        const {parent: initParentNode, index: initIndex} = this.getInitStateOfElem(elem);
+        let [width, targetNodeId] = elem.dataset.adaptive.split(' ');
+        const targetParent = document.getElementById(targetNodeId);
+        width = parseInt(width);
+        
+        if(!targetParent) return;
+        
+        if(windowWidth <= width) {
+          targetParent.append(elem);
+        } else initParentNode.children[initIndex - 1].after(elem);
+      }
+    }
+    
+    getIndexOfChild(elem) {
+      return Array.from(elem.parentNode.children).indexOf(elem);
+    }
+    
+    getInitStateOfElem(elem) {
+      return this.bundleMap.get(elem);
+    }
+    
+    init() {
+      this.onSetAdaptive();
+    }
+  }
+  
+  new DynamicAdaptive().init();
+</script>
+</body>
+</html>

@@ -5,8 +5,6 @@
 .cover-select {
   position: relative;
   width: 50%;
-  margin-top: 500px;
-  margin-bottom: 500px;
 }
 
 .cover-select__input {
@@ -49,4 +47,35 @@
   position: absolute;
   opacity: 0;
   visibility: hidden;
+}
+
+.cover-select__optgroup_selected {
+  list-style: none;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-left: 0;
+}
+
+.cover-select__optgroup_selected .cover-select__option {
+  position: relative;
+  color: #ff474e;
+}
+
+.cover-select__optgroup_selected .cover-select__option::before,
+.cover-select__optgroup_selected .cover-select__option::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 6px;
+  display: block;
+  width: 10%;
+  height: 2px;
+  background-color: #ff474e;
+}
+
+.cover-select__optgroup_selected .cover-select__option::before {
+  transform: translateY(-50%) rotate(45deg);
+}
+.cover-select__optgroup_selected .cover-select__option::after {
+  transform: translateY(-50%) rotate(-45deg);
 }
