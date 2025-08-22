@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<html lang="ru">
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" href="styles/style.css">
+  <title>Уравнение прямой, проходящей через две точки</title>
+  <script src="https://unpkg.com/just-validate@latest/dist/just-validate.production.min.js"></script>
+  <script src="scripts/index.js" defer></script>
+</head>
+<body>
+  <header class="header">
+    <h1>Уравнение прямой, проходящей через две точки</h1>
+  </header>
+  <main class="main">
+    <section class="main__form">
+      <h2>Найти точки прямой</h2>
+      <form id="linear-form" class="main__form-form linear-form js-linear-form" action="#" method="GET" name="linearForm">
+        <fieldset class="linear-form__fieldset" form="linear-form" name="linearFormInput">
+          <label class="linear-form__label">
+            Координаты первой точки:
+            <input class="linear-form__input" type="text" name="point1" placeholder="0,0">
+          </label>
+          <label class="linear-form__label">
+            Координаты второй точки:
+            <input class="linear-form__input" type="text" name="point2" placeholder="0,0">
+          </label>
+        </fieldset>
+        <fieldset class="linear-form__fieldset" form="linear-form" name="linearFormOutput">
+          <label class="linear-form__label">
+            X:
+            <input class="linear-form__input" name="xResult" type="number">
+          </label>
+          <label class="linear-form__label">
+            Z:
+            <input class="linear-form__input" name="zResult" type="number">
+          </label>
+          <button id="js-linear-form-submit" class="linear-form__button js-linear-form-submit" type="submit">Рассчитать</button>
+        </fieldset>
+      </form>
+    </section>
+  </main>
+</body>
+</html>
