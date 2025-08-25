@@ -1,6 +1,6 @@
 'use strict';
 
-const PATTERN_POINT = /^\d+\.?\d*,\d+\.?\d*$/;
+const PATTERN_POINT = /^-?\d+\.?\d*,-?\d+\.?\d*$/;
 const linearForm = document.forms.linearForm;
 const btnSubmit = document.querySelector('#js-linear-form-submit');
 const point1 = document.forms.linearForm.point1;
@@ -30,7 +30,21 @@ addField(point1, [{
     },
 ]);
 
-function linearFormSubmit(event) {
+function onResetResultInput(event) {
+    if(!event.target.classList.contains('js-result')) return;
+    
+    event.target == xResult ? zResult.value = '' : xResult.value = '';
+    
+    linearForm.removeEventListener('input', onResetResultInput);
+    
+    console.log('input!');
+}
+
+function roundToThree(num) {
+    return Number(num.toFixed(3));
+}
+
+function onLinearFormSubmit(event) {
     let x = 0;
     let z = 0;
     validator.eventListeners[0].func(event);
@@ -46,20 +60,22 @@ function linearFormSubmit(event) {
     
     const [ x1, z1 ] = point1.split(',').map(e => Number(e));
     const [ x2, z2 ] = point2.split(',').map(e => Number(e));
-    const k = ( z2 - z1 ) / ( x2 - x1 );
-    const b = z1 - k * x1;
+    const k = roundToThree(( z2 - z1 ) / ( x2 - x1 ));
+    const b = roundToThree(z1 - k * x1);
 
     if(!xResult && !zResult) return;
     
     if(!xResult) {
       z = zResult;
-      x = ( b - z )/k;
+      x = roundToThree(( z - b )/k);
     } else {
       x = xResult;
-      z = k * x + b;
+      z = roundToThree(k * x + b);
     }
     linearForm.xResult.value = x;
     linearForm.zResult.value = z;
+    
+    linearForm.addEventListener('input', onResetResultInput);
 }
 
-linearForm.addEventListener('submit', linearFormSubmit);
+linearForm.addEventListener('submit', onLinearFormSubmit);

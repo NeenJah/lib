@@ -29,13 +29,16 @@
         <fieldset class="linear-form__fieldset" form="linear-form" name="linearFormOutput">
           <label class="linear-form__label">
             X:
-            <input class="linear-form__input" name="xResult" type="number">
+            <input class="linear-form__input js-result" name="xResult" type="number">
           </label>
           <label class="linear-form__label">
             Z:
-            <input class="linear-form__input" name="zResult" type="number">
+            <input class="linear-form__input js-result" name="zResult" type="number">
           </label>
-          <button id="js-linear-form-submit" class="linear-form__button js-linear-form-submit" type="submit">Рассчитать</button>
+          <div class="linear-form__btns-wrapper">
+            <button id="js-linear-form-submit" class="linear-form__button js-linear-form-submit" type="submit">Рассчитать</button>
+            <button class="linear-form__button" type="reset">Сбросить</button>
+          </div>
         </fieldset>
       </form>
     </section>

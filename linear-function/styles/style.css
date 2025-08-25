@@ -13,3 +13,20 @@
   row-gap: 10px;
 }
 
+.linear-form__btns-wrapper {
+  display: flex;
+  justify-content: space-around;
+}
+
+.linear-form__button {
+  font-size: 22px;
+  padding: 5px 10px;
+  border-radius: 16px;
+  border: none;
+  box-shadow: 0 5px 10px -5px black;
+  transition: box-shadow 0.1s linear;
+}
+
+.linear-form__button:active {
+  box-shadow: 0 0 2px 0 black;
+}
