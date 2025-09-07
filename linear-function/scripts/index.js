@@ -1,10 +1,18 @@
 'use strict';
 
 const PATTERN_POINT = /^-?\d+\.?\d*,-?\d+\.?\d*$/;
+const inputRules = [
+  {
+    rule: 'required',
+      errorMessage: 'Поле обязательно для заполнения'
+  },
+];
 const linearForm = document.forms.linearForm;
 const btnSubmit = document.querySelector('#js-linear-form-submit');
-const point1 = document.forms.linearForm.point1;
-const point2 = document.forms.linearForm.point2;
+const x1InputEl = document.forms.linearForm.x1;
+const z1InputEl = document.forms.linearForm.z1;
+const x2InputEl = document.forms.linearForm.x2;
+const z2InputEl = document.forms.linearForm.z2;
 const xResult = document.forms.linearForm.xResult;
 const zResult = document.forms.linearForm.zResult;
 
@@ -13,22 +21,10 @@ const validator = new JustValidate(document.forms.linearForm, {
 });
 
 validator.
-addField(point1, [{
-        rule: 'required',
-        errorMessage: 'Поле обязательно для заполнения!',
-    },
-    {
-        rule: 'customRegexp',
-        value: PATTERN_POINT,
-    },
-]).addField(point2, [{
-        rule: 'required',
-    },
-    {
-        rule: 'customRegexp',
-        value: PATTERN_POINT,
-    },
-]);
+addField(x1InputEl, inputRules).
+addField(z1InputEl, inputRules).
+addField(x2InputEl, inputRules).
+addField(z2InputEl, inputRules);
 
 function onResetResultInput(event) {
     if(!event.target.classList.contains('js-result')) return;
@@ -52,14 +48,14 @@ function onLinearFormSubmit(event) {
         isValid
     } = validator;
     const {
-        point1: { value: point1 },
-        point2: { value: point2 },
+        x1: { value: x1 },
+        z1: { value: z1 },
+        x2: { value: x2 },
+        z2: { value: z2 },
         xResult: { value: xResult },
         zResult: { value: zResult },
     } = linearForm;
     
-    const [ x1, z1 ] = point1.split(',').map(e => Number(e));
-    const [ x2, z2 ] = point2.split(',').map(e => Number(e));
     const k = roundToThree(( z2 - z1 ) / ( x2 - x1 ));
     const b = roundToThree(z1 - k * x1);
 

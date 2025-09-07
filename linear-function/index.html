@@ -3,6 +3,7 @@
 <html lang="ru">
 <head>
   <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="styles/style.css">
   <title>Уравнение прямой, проходящей через две точки</title>
   <script src="https://unpkg.com/just-validate@latest/dist/just-validate.production.min.js"></script>
@@ -10,21 +11,33 @@
 </head>
 <body>
   <header class="header">
-    <h1>Уравнение прямой, проходящей через две точки</h1>
+    <h1 class="header__title">Уравнение прямой, проходящей через две точки</h1>
   </header>
   <main class="main">
     <section class="main__form">
       <h2>Найти точки прямой</h2>
       <form id="linear-form" class="main__form-form linear-form js-linear-form" action="#" method="GET" name="linearForm">
         <fieldset class="linear-form__fieldset" form="linear-form" name="linearFormInput">
-          <label class="linear-form__label">
-            Координаты первой точки:
-            <input class="linear-form__input" type="text" name="point1" placeholder="0,0">
-          </label>
-          <label class="linear-form__label">
-            Координаты второй точки:
-            <input class="linear-form__input" type="text" name="point2" placeholder="0,0">
-          </label>
+          <div class="linear-form__point-wrapper">
+            <label class="linear-form__label">
+              X1:
+              <input class="linear-form__input" type="number" name="x1" placeholder="0.0">
+            </label>
+            <label class="linear-form__label">
+              Z1:
+              <input class="linear-form__input" type="number" name="z1" placeholder="0.0">
+            </label>
+          </div>
+          <div class="linear-form__point-wrapper">
+            <label class="linear-form__label">
+              X2:
+              <input class="linear-form__input" type="number" name="x2" placeholder="0.0">
+            </label>
+            <label class="linear-form__label">
+              Z2:
+              <input class="linear-form__input" type="number" name="z2" placeholder="0.0">
+            </label>
+          </div>
         </fieldset>
         <fieldset class="linear-form__fieldset" form="linear-form" name="linearFormOutput">
           <label class="linear-form__label">

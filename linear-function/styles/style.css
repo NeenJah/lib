@@ -1,10 +1,112 @@
+/* Указываем box sizing */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Убираем внутренние отступы */
+ul[class],
+ol[class] {
+  padding: 0;
+}
+
+/* Убираем внешние отступы */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+ul[class],
+ol[class],
+li,
+figure,
+figcaption,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+/* Выставляем основные настройки по-умолчанию для body */
+body {
+  min-height: 100vh;
+  scroll-behavior: smooth;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+}
+
+/* Удаляем стандартную стилизацию для всех ul и il, у которых есть атрибут class*/
+ul[class],
+ol[class] {
+  list-style: none;
+}
+
+/* Элементы a, у которых нет класса, сбрасываем до дефолтных стилей */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+/* Упрощаем работу с изображениями */
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Указываем понятную периодичность в потоке данных у article*/
+article > * + * {
+  margin-top: 1em;
+}
+
+/* Наследуем шрифты для инпутов и кнопок */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* Удаляем все анимации и переходы для людей, которые предпочитай их не использовать */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.header {
+  padding: 10px 16px;
+}
+
+.header__title {
+  text-align: center;
+}
+
+.main {
+  padding: 10px 16px;
+}
+
+.linear-form {
+  border: 1px solid #2e5fff;
+  border-radius: 4px;
+}
+
 .linear-form__fieldset {
   display: flex;
   flex-direction: column;
+  border: none;
+}
+
+.linear-form__point-wrapper {
+  display: flex;
+  column-gap: 40px;
 }
 
 .linear-form__label:not(:last-child) {
-  margin-bottom: 30px;
+  margin-bottom: 16px;
 }
 
 .linear-form__label {
@@ -13,16 +115,30 @@
   row-gap: 10px;
 }
 
+.linear-form__input {
+  padding: 6px 8px;
+  font-size: 24px;
+  border: none;
+  border-radius: 4px;
+  background-color: #eee;
+}
+
+.linear-form__input:focus-visible {
+  outline: none;
+}
+
 .linear-form__btns-wrapper {
   display: flex;
   justify-content: space-around;
 }
 
 .linear-form__button {
-  font-size: 22px;
-  padding: 5px 10px;
-  border-radius: 16px;
+  font-size: 18px;
+  padding: 8px 14px;
+  color: #fff;
+  border-radius: 22px;
   border: none;
+  background-color: #2e5fff;
   box-shadow: 0 5px 10px -5px black;
   transition: box-shadow 0.1s linear;
 }
